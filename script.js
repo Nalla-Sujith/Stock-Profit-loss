@@ -9,17 +9,30 @@ var clickhandler=()=>{
   let currentprice=Number(cur_price.value);
   let diffamount=Math.abs(initprice-currentprice);
   let percentage=Math.trunc(((diffamount)/initprice)*(100));
-  if(currentprice > initprice)
+  if(initialpriceref.value==='' || qnty_stocks.value==='' || cur_price.value==='')
+  {
+    output_div.innerText="Please Enter all Fields!!";
+    output_div.style.color='red';
+  }
+  else if(initprice<0 || qntyofstocks<0 || currentprice<0)
+  {
+    output_div.innerText="No Negative Values Please!!"
+    output_div.style.color='red'
+  }
+  else if(currentprice > initprice)
   {
     output_div.innerText="We Made a profit of rupees "+((currentprice-initprice)*(qntyofstocks)+" with profit percentage "+percentage+"%");
+    output_div.style.color='whitesmoke';
   }
   else if(currentprice==initprice)
   {
     output_div.innerText="No Profit and No Loss both current price and initial price are same!!";
+    output_div.style.color='whitesmoke';
   }
   else
   {
     output_div.innerText="We Made a loss of rupees "+((initprice-currentprice)*(qntyofstocks)+" with loss percentage "+percentage)+"%";
+    output_div.style.color='whitesmoke';
   }
 }
-button.addEventListener("click",clickhandler);
+button.addEventListener("click",clickhandler);  
